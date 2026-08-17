@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday! 🎉</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            color: #fff;
+            text-align: center;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #ff4757;
+            text-shadow: 0 0 10px #ff4757, 0 0 20px #ff6b81, 0 0 40px #ff6b81;
+            animation: pulse 1.5s infinite alternate, floatText 3s ease-in-out infinite;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 1.5rem;
+            color: #eccc68;
+            letter-spacing: 2px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* Animasi Teks */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.08); }
+        }
+
+        @keyframes floatText {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Animasi Balon Terbang */
+        .balloon {
+            position: absolute;
+            bottom: -100px;
+            width: 50px;
+            height: 70px;
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            animation: floatUp 6s linear infinite;
+        }
+
+        .balloon::after {
+            content: "";
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 15px;
+            background-color: #fff;
+        }
+
+        @keyframes floatUp {
+            0% {
+                bottom: -100px;
+                opacity: 1;
+            }
+            100% {
+                bottom: 108vh;
+                opacity: 0.2;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🎉 Happy Birthday! 🎂</h1>
+        <p>Semoga harimu penuh kebahagiaan & keberkahan! ✨</p>
+    </div>
+
+    <!-- Script Pembuat Balon Otomatis -->
+    <script>
+        const colors = ['#ff4757', '#ffa502', '#2ed573', '#1e90ff', '#9b59b6', '#ff7875'];
+        
+        function createBalloon() {
+            const balloon = document.createElement('div');
+            balloon.classList.add('balloon');
+            
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            const randomLeft = Math.random() * 100;
+            const randomSize = Math.random() * 20 + 40;
+            const randomDuration = Math.random() * 4 + 4;
+            
+            balloon.style.backgroundColor = randomColor;
+            balloon.style.left = randomLeft + 'vw';
+            balloon.style.width = randomSize + 'px';
+            balloon.style.height = (randomSize * 1.3) + 'px';
+            balloon.style.animationDuration = randomDuration + 's';
+            balloon.style.boxShadow = `0 0 15px ${randomColor}`;
+
+            document.body.appendChild(balloon);
+
+            setTimeout(() => {
+                balloon.remove();
+            }, randomDuration * 1000);
+        }
+
+        setInterval(createBalloon, 400);
+    </script>
+</body>
+</html>
