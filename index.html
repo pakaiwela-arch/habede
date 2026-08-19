@@ -54,7 +54,7 @@
       box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
       
       /* Animasi Masuk dari Kanan ke Kiri setelah Kartu 1 Selesai */
-      animation: cardTwoSequence 8s ease-in-out 5.5s forwards;
+      animation: cardTwoSequence 6s ease-in-out 10s forwards;
       opacity: 0;
     }
 
@@ -67,7 +67,7 @@
       box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 
        /* Animasi: Tunggu Kartu 2 Hilang -> Muncul -> Tetap Malayang */
-      animation: cardTwoSequence 8s ease-in-out 10s forwards;
+      animation: cardTwoSequence 6s ease-in-out 5.5s forwards;
       opacity: 0;
     }
 
@@ -111,7 +111,7 @@
       }
       100% {
         opacity: 0;
-        transform: translateX(120%);
+        transform: translateY(20px);
       }
     }
 
@@ -127,7 +127,7 @@
       }
       50%, 100% {
         opacity: 1;
-        transform: translateY(-8px);
+        transform: translateY(0px);
       }
     }
 
@@ -135,15 +135,15 @@
     @keyframes cardTwoSequence {
       0% {
         opacity: 0;
-        transform: translateY(50px) scale(0.9);
+        transform: translateX(120%);
       }
       20% {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translateX(0);
       }
       50%, 100% {
         opacity: 1;
-        transform: translateY(-8px) scale(1);
+        transform: translateY(-20px);
       }
     }
     
