@@ -28,11 +28,11 @@
       display: flex;
       flex-direction: column;
       gap: 20px;
-      max-width: 500px;
+      max-width: 450px;
       width: 100%;
     }
 
-    /* KOTAK PERTAMA */
+    /* KARTU PERTAMA */
     .card-1 {
       background: rgba(255, 255, 255, 0.15);
       padding: 25px;
@@ -40,192 +40,103 @@
       backdrop-filter: blur(10px);
       box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
       
-      /* Animasi Masuk + Melayang */
-      animation: 
-        fadeInUp 1s ease-out forwards,
-        float 3s ease-in-out 1s infinite;
-      opacity: 0; /* Tersembunyi dulu sebelum animasi mulai */
+      /* Animasi: Masuk -> Tampil -> Keluar -> Hilang */
+      animation: cardOneSequence 6s ease-in-out forwards;
+      opacity: 0;
     }
 
-    /* Kotak Pertama - Animasi Melayang */
-    .card-1 {
+    /* KARTU KEDUA */
+    .card-2 {
       background: rgba(255, 255, 255, 0.15);
       padding: 25px;
       border-radius: 20px;
       backdrop-filter: blur(10px);
       box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-      animation: float 3s ease-in-out infinite;
-    }
-
-    /* Kotak Kedua - Animasi Balon & Denyut */
-    .card-2 {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 25px;
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-      position: relative;
-      animation: pulse 2.5s ease-in-out infinite;
+      
+      /* Animasi: Tunggu Kartu 1 Hilang -> Masuk -> Tetap Melayang */
+      animation: cardTwoSequence 8s ease-in-out 5.5s forwards;
+      opacity: 0;
     }
 
     h1 {
       font-size: 1.8rem;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     p {
       font-size: 1rem;
-      line-height: 1.5;
-    }
-
-    /* Hiasan Balon */
-    .balloon-container {
-      margin-top: 15px;
-      font-size: 2rem;
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-    }
-
-    .balloon {
-      display: inline-block;
-      animation: bounce 2s infinite ease-in-out alternate;
-    }
-
-    .balloon:nth-child(2) {
-      animation-delay: 0.3s;
-    }
-
-    .balloon:nth-child(3) {
-      animation-delay: 0.6s;
-    }
-
-    /* Keyframes Animasi */
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.02); }
-    }
-
-    @keyframes bounce {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-15px); }
-    }
-  </style>
-</head>
-<body>
-    
-    /* KOTAK KEDUA */
-    .card-2 {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 25px;
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-      
-      /* Animasi Masuk (agak tunda) + Berdenyut */
-      animation: 
-        fadeInUp 1s ease-out 0.5s forwards,
-        pulse 2.5s ease-in-out 1.5s infinite;
-      opacity: 0;
-    }
-
-    /* ANIMASI TEKS MASUK */
-    .card-1 h1 {
-      font-size: 1.8rem;
-      margin-bottom: 10px;
-      animation: fadeIn 1s ease-out 0.8s forwards;
-      opacity: 0;
-    }
-
-    .card-1 p {
-      font-size: 1rem;
-      line-height: 1.5;
-      animation: fadeIn 1s ease-out 1.1s forwards;
-      opacity: 0;
-    }
-
-    .card-2 p {
-      font-size: 1rem;
-      line-height: 1.5;
-      animation: fadeIn 1s ease-out 1.4s forwards;
-      opacity: 0;
+      line-height: 1.6;
     }
 
     /* BALON MELAYANG */
     .balloon-container {
       margin-top: 15px;
-      font-size: 2rem;
+      font-size: 2.2rem;
       display: flex;
       justify-content: center;
       gap: 15px;
-      animation: fadeIn 1s ease-out 1.7s forwards;
-      opacity: 0;
     }
 
     .balloon {
       display: inline-block;
-      animation: bounce 2s infinite ease-in-out alternate;
+      animation: bounce 1.8s infinite ease-in-out alternate;
     }
 
     .balloon:nth-child(2) { animation-delay: 0.3s; }
     .balloon:nth-child(3) { animation-delay: 0.6s; }
 
-    /* --- KEYFRAMES EFEK ANIMASI --- */
-
-    /* Efek Masuk dari Bawah */
-    @keyframes fadeInUp {
-      from {
+    /* --- ANIMASI KARTU PERTAMA --- */
+    @keyframes cardOneSequence {
+      0% {
         opacity: 0;
-        transform: translateY(40px) scale(0.95);
+        transform: translateY(50px) scale(0.9);
       }
-      to {
+      15%, 80% {
         opacity: 1;
         transform: translateY(0) scale(1);
       }
+      100% {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+        display: none;
+      }
     }
 
-    /* Efek Teks Muncul Perlahan */
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    /* --- ANIMASI KARTU KEDUA --- */
+    @keyframes cardTwoSequence {
+      0% {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+      }
+      20% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      50%, 100% {
+        opacity: 1;
+        transform: translateY(-8px) scale(1);
+      }
     }
 
-    /* Efek Melayang Kontinu */
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-    }
-
-    /* Efek Denyut Kontinu */
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.02); }
-    }
-  
-  /* Efek Balon Membal */
+    /* ANIMASI MEMBAL BALON */
     @keyframes bounce {
       0% { transform: translateY(0); }
-      100% { transform: translateY(-15px); }
+      100% { transform: translateY(-12px); }
     }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <!-- Kotak Ucapan Utama -->
+    <!-- Kartu 1: Muncul Pertama, Lalu Menghilang ke Atas -->
     <div class="card-1">
       <h1>🎉 Happy Birthday! 🎂</h1>
-      <p>Selamat ulang tahun! Semoga harimu menyenangkan dan semua impianmu tercapai!</p>
+      <p>Met ultah, Semoga harimu selalu always dan semua yu hep drim is tercapai!</p>
     </div>
 
-    <!-- Kotak Pesan Kedua -->
+    <!-- Kartu 2: Muncul Setelah Kartu 1 Hilang -->
     <div class="card-2">
-      <p>HBD @AlizaIsabela, sekali kali gunakan AI dengan baik dan benar, ku sebener e lah buat yang lain tu sebelum e, tapi ku salah tangkep.</p>
+      <p>HBD @alizalsabela, sekali kali gunakan AI dengan baik dan benar, bersama AI jayakan indonesia, SELAMAT ULANG TAHUN INDONESIA YG KE-81</p>
       
       <div class="balloon-container">
         <span class="balloon">🎈</span>
