@@ -32,33 +32,37 @@
       width: 100%;
     }
 
+    /* KOTAK PERTAMA */
     .card-1 {
       background: rgba(255, 255, 255, 0.15);
       padding: 25px;
       border-radius: 20px;
       backdrop-filter: blur(10px);
       box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-   
+      
+      /* Animasi Masuk + Melayang */
       animation: 
         fadeInUp 1s ease-out forwards,
         float 3s ease-in-out 1s infinite;
-      opacity: 0; 
+      opacity: 0; /* Tersembunyi dulu sebelum animasi mulai */
     }
 
+    /* KOTAK KEDUA */
     .card-2 {
       background: rgba(255, 255, 255, 0.1);
       padding: 25px;
       border-radius: 20px;
       backdrop-filter: blur(10px);
       box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    
+      
+      /* Animasi Masuk (agak tunda) + Berdenyut */
       animation: 
         fadeInUp 1s ease-out 0.5s forwards,
         pulse 2.5s ease-in-out 1.5s infinite;
       opacity: 0;
     }
 
-
+    /* ANIMASI TEKS MASUK */
     .card-1 h1 {
       font-size: 1.8rem;
       margin-bottom: 10px;
@@ -80,6 +84,7 @@
       opacity: 0;
     }
 
+    /* BALON MELAYANG */
     .balloon-container {
       margin-top: 15px;
       font-size: 2rem;
@@ -98,6 +103,9 @@
     .balloon:nth-child(2) { animation-delay: 0.3s; }
     .balloon:nth-child(3) { animation-delay: 0.6s; }
 
+    /* --- KEYFRAMES EFEK ANIMASI --- */
+
+    /* Efek Masuk dari Bawah */
     @keyframes fadeInUp {
       from {
         opacity: 0;
@@ -109,20 +117,25 @@
       }
     }
 
+    /* Efek Teks Muncul Perlahan */
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
     }
 
+    /* Efek Melayang Kontinu */
     @keyframes float {
       0%, 100% { transform: translateY(0px); }
       50% { transform: translateY(-10px); }
     }
 
+    /* Efek Denyut Kontinu */
     @keyframes pulse {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.02); }
     }
+
+    /* Efek Balon Membal */
     @keyframes bounce {
       0% { transform: translateY(0); }
       100% { transform: translateY(-15px); }
@@ -131,17 +144,24 @@
 </head>
 <body>
 
-  <div class="content-container">
-     <div class="card animation-float">
-    <h1>🎉 Happy Birthday! 🎂</h1>
-    <p>Met ultah, Semoga harimu selalu always dan semua yu hep drim is tercapai!</p>
-     
-     <div class="card animation-baloon">
-    <p>HBD @alizaIsabela, sekali kali gunakan AI dengan baik dan benar, bersama AI jayakan indonesia, SELAMAT ULANG TAHUN INDONESIA YG KE-81 </p>
-<div class="balloon-container">
-  <span class="balloon b1">🎈</span>
-  <span class="balloon b2">🎈</span>
-  <span class="balloon b3">🎈</span>
-  
+  <div class="container">
+    <!-- Kotak Ucapan Utama -->
+    <div class="card-1">
+      <h1>🎉 Happy Birthday! 🎂</h1>
+      <p>Selamat ulang tahun! Semoga harimu menyenangkan dan semua impianmu tercapai!</p>
+    </div>
+
+    <!-- Kotak Pesan Kedua -->
+    <div class="card-2">
+      <p>HBD @AlizaIsabela, sekali kali gunakan AI dengan baik dan benar, ku sebener e lah buat yang lain tu sebelum e, tapi ku salah tangkep.</p>
+      
+      <div class="balloon-container">
+        <span class="balloon">🎈</span>
+        <span class="balloon">🎈</span>
+        <span class="balloon">🎈</span>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
