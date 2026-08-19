@@ -47,6 +47,78 @@
       opacity: 0; /* Tersembunyi dulu sebelum animasi mulai */
     }
 
+    /* Kotak Pertama - Animasi Melayang */
+    .card-1 {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 25px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    /* Kotak Kedua - Animasi Balon & Denyut */
+    .card-2 {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 25px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      position: relative;
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    /* Hiasan Balon */
+    .balloon-container {
+      margin-top: 15px;
+      font-size: 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .balloon {
+      display: inline-block;
+      animation: bounce 2s infinite ease-in-out alternate;
+    }
+
+    .balloon:nth-child(2) {
+      animation-delay: 0.3s;
+    }
+
+    .balloon:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+
+    /* Keyframes Animasi */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+
+    @keyframes bounce {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-15px); }
+    }
+  </style>
+</head>
+<body>
+    
     /* KOTAK KEDUA */
     .card-2 {
       background: rgba(255, 255, 255, 0.1);
@@ -134,8 +206,8 @@
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.02); }
     }
-
-    /* Efek Balon Membal */
+  
+  /* Efek Balon Membal */
     @keyframes bounce {
       0% { transform: translateY(0); }
       100% { transform: translateY(-15px); }
