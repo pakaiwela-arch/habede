@@ -21,7 +21,7 @@
       color: #fff;
       text-align: center;
       padding: 20px;
-      overflow-x: hidden; /* Mencegah munculnya scrollbar horizontal saat animasi berjalan */
+      overflow-x: hidden;
     }
 
     .container {
@@ -40,8 +40,8 @@
       backdrop-filter: blur(10px);
       box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
       
-      /* Animasi Masuk dari Kiri */
-      animation: cardOneSequence 6s ease-in-out 5.5s forwards;
+      /* Masuk Pertama dari Kiri */
+      animation: cardOneSequence 1.2s ease-out 0.5s forwards;
       opacity: 0;
     }
 
@@ -53,55 +53,32 @@
       backdrop-filter: blur(10px);
       box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
       
-      /* Animasi Masuk dari Kanan setelah Kartu 1 */
-      animation: cardTwoSequence 2s ease-in-out 10s forwards;
+      /* Masuk Kedua dari Kanan */
+      animation: cardTwoSequence 1.2s ease-out 2s forwards;
       opacity: 0;
     }
 
-         /* KARTU KETIGA */
-    .card-3 {
-      background: rgba(225, 255, 255, 0.15);
-      padding: 25px;
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-
-       /* Animasi: Tunggu Kartu 2 Hilang -> Muncul -> Tetap Malayang */
-      animation: cardTwoSequence 6s ease-in-out 5.5s forwards;
-      opacity: 0;
-    }
-
-    /* Aturan untuk Kartu 3 */
+    /* KARTU KETIGA */
     .card-3 {
       background: rgba(255, 255, 255, 0.15);
       padding: 25px;
       border-radius: 20px;
       backdrop-filter: blur(10px);
       box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-      animation: cardThreeSequence 8s ease-in-out 12s forwards;
+      
+      /* Masuk Ketiga dari Bawah */
+      animation: cardThreeSequence 1.2s ease-out 3.5s forwards;
       opacity: 0;
     }
 
-    /* Mengatur Ukuran Gambar GIF */
+    /* Mengatur Ukuran Media Video/GIF */
     .gift-mp4 {
       width: 100%;
       max-width: 250px;
-      border-radius: 120px;
-      margin-top: 150px;
+      border-radius: 15px;
+      margin-top: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
-
-    /* Keyframes Animasi Kartu 3 */
-    @keyframes cardThreeSequence {
-      0% {
-        opacity: 0;
-        transform: translateY(50px);
-      }
-      20%, 100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
 
     h1 {
       font-size: 1.8rem;
@@ -130,73 +107,45 @@
     .balloon:nth-child(2) { animation-delay: 0.3s; }
     .balloon:nth-child(3) { animation-delay: 0.6s; }
 
-    /* --- ANIMASI KARTU PERTAMA (Kiri ke Kanan) --- */
+    /* --- KEYFRAMES ANIMASI --- */
+
+    /* Animasi Kartu 1: Masuk dari Kiri & Tetap Ada */
     @keyframes cardOneSequence {
       0% {
         opacity: 0;
         transform: translateX(-120%);
       }
-      15%, 80% {
+      100% {
         opacity: 1;
         transform: translateX(0);
+      }
+    }
+
+    /* Animasi Kartu 2: Masuk dari Kanan & Tetap Ada */
+    @keyframes cardTwoSequence {
+      0% {
+        opacity: 0;
+        transform: translateX(120%);
       }
       100% {
-        opacity: 0;
-        transform: translateY(0px);
-      }
-    }
-
-    /* --- ANIMASI KARTU KEDUA (Kanan ke Kiri) --- */
-    @keyframes cardTwoSequence {
-      0% {
-        opacity: 0;
-        transform: translateX(120%);
-      }
-      20% {
         opacity: 1;
         transform: translateX(0);
       }
-      50%, 100% {
-        opacity: 1;
-        transform: translateY(-20px);
-      }
     }
 
-      /* --- ANIMASI KARTU KETIGA --- */
-    @keyframes cardTwoSequence {
+    /* Animasi Kartu 3: Masuk dari Bawah & Tetap Ada */
+    @keyframes cardThreeSequence {
       0% {
         opacity: 0;
-        transform: translateX(120%);
+        transform: translateY(50px);
       }
-      20% {
+      100% {
         opacity: 1;
-        transform: translateX(0);
-      }
-      50%, 100% {
-        opacity: 1;
-        transform: translateY(-20px);
+        transform: translateY(0);
       }
     }
-    
-    /* BALON MELAYANG */
-    .balloon-container {
-      margin-top: 15px;
-      font-size: 2.2rem;
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-    }
 
-    .balloon {
-      display: inline-block;
-      animation: bounce 1.8s infinite ease-in-out alternate;
-    }
-
-    .balloon:nth-child(2) { animation-delay: 0.3s; }
-    .balloon:nth-child(3) { animation-delay: 0.6s; }
-
-
-    /* ANIMASI MEMBAL BALON */
+    /* Animasi Membal Balon */
     @keyframes bounce {
       0% { transform: translateY(0); }
       100% { transform: translateY(-12px); }
@@ -206,13 +155,13 @@
 <body>
 
   <div class="container">
-    <!-- Kartu 1: Muncul Pertama, Lalu melayang -->
+    <!-- Kartu 1 -->
     <div class="card-1">
       <h1>🎉 Happy Birthday! 🎂</h1>
       <p>Met ultah @alizalsabela, Semoga harimu selalu always dan semua yu hep drim is tercapai!</p>
     </div>
 
-    <!-- Kartu 2: Muncul Setelah Kartu 1 -->
+    <!-- Kartu 2 -->
     <div class="card-2">
       <p>Sekali kali gunakan AI dengan baik dan benar, bersama AI jayakan indonesia, SELAMAT ULANG TAHUN INDONESIA YG KE-81</p>
       
@@ -222,12 +171,13 @@
         <span class="balloon">🎈</span>
       </div>
     </div>
+
+    <!-- Kartu 3 -->
+    <div class="card-3">
+      <p>🎁 Special Gift 🎁</p>
+      <video src="stutu.mp4" autoplay loop muted playsinline class="gift-mp4"></video>
+    </div>
   </div>
 
-   <!-- Kartu 3: Muncul Setelah Kartu 2 -->
-  <div class="card-3">
-    <p>🎁</p>
-      <img src="stutu.mp4" alt="Gift MP4" class="gift-mp4">
-    </div>
 </body>
 </html>
