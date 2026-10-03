@@ -42,19 +42,20 @@
       opacity: 0;
     }
 
-    /* KARTU PERTAMA: Masuk dari Kiri (Cepat, langsung muncul) */
+    /* KARTU PERTAMA: Masuk dari Kiri */
     .card-1 {
       animation: slideInLeft 0.8s ease-out 0.2s forwards;
     }
 
-    /* KARTU KEDUA: Masuk dari Kanan (Jeda singkat setelah Kartu 1) */
+    /* KARTU KEDUA: Masuk dari Kanan */
     .card-2 {
       animation: slideInRight 0.8s ease-out 1.2s forwards;
     }
 
-    /* KARTU KETIGA: Masuk dari Bawah (Jeda singkat setelah Kartu 2) */
+    /* KARTU KETIGA: Masuk dari Bawah (Tempat Video) */
     .card-3 {
       animation: slideInUp 0.8s ease-out 2.2s forwards;
+      padding: 15px; /* Sedikit dirapatkan agar video pas */
     }
 
     h1 {
@@ -84,12 +85,14 @@
     .balloon:nth-child(2) { animation-delay: 0.3s; }
     .balloon:nth-child(3) { animation-delay: 0.6s; }
 
-    /* UKURAN MEDIA / GIF KARTU 3 */
-    .gift-mp4 {
+    /* UKURAN MEDIA & VIDEO AGAR RAPI DAN MELENGKUNG */
+    .responsive-video {
       width: 100%;
-      max-width: 220px;
+      max-height: 350px;
       border-radius: 15px;
-      margin-top: 15px;
+      margin-top: 10px;
+      display: block;
+      object-fit: cover;
     }
 
     /* --- KEYFRAMES ANIMASI MASUK --- */
@@ -157,13 +160,15 @@
       </div>
     </div>
 
-    <!-- Kartu 3: Muncul Ketiga dari Bawah -->
+    <!-- Kartu 3: Video Curut (Muncul Ketiga dari Bawah) -->
     <div class="card-3">
-      <p>🎁</p>
-      <img src="stutu.mp4" alt="Gift MP4" class="gift-mp4">
+      <p>🎁 Gift For You 🎁</p>
+      <video controls autoplay muted loop class="responsive-video">
+        <source src="curut.mp4" type="video/mp4">
+        Browser kamu tidak mendukung video.
+      </video>
     </div>
   </div>
-  
-<video width="300" controls autoplay muted loop>
-  <source src="curut.mp4" type="video/mp4">
-</video>
+
+</body>
+</html>
