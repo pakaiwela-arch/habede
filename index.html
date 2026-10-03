@@ -11,69 +11,80 @@
       box-sizing: border-box;
     }
 
-    body {
+    /* MENJADIKAN HALAMAN BISA DIGESER HALAMAN PER HALAMAN */
+    html, body {
+      height: 100%;
+      overflow-y: mandatory;
+      scroll-snap-type: y mandatory; /* Fitur Utama Scroll Snap */
+      scroll-behavior: smooth;
       background: linear-gradient(135deg, #1e3c72, #2a5298);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: #fff;
       text-align: center;
-      padding: 20px;
-      overflow-x: hidden;
     }
 
     .container {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      max-width: 450px;
       width: 100%;
+      height: 100%;
     }
 
-    /* DESAIN DASAR KARTU */
-    .card-1, .card-2, .card-3 {
+    /* DESAIN SETIAP KARTU AGAR SATU HALAMAN PENUH */
+    .card {
+      height: 100vh; /* Setinggi layar HP/Monitor */
+      width: 100%;
+      scroll-snap-align: center; /* Kunci tepat di tengah saat digeser */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 20px;
+    }
+
+    /* KOTAK KACA UNTUK KONTEN */
+    .card-content {
       background: rgba(255, 255, 255, 0.15);
       padding: 25px;
       border-radius: 20px;
       backdrop-filter: blur(10px);
       box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-      opacity: 0;
-    }
-
-    /* KARTU PERTAMA: Masuk dari Kiri */
-    .card-1 {
-      animation: slideInLeft 0.8s ease-out 0.2s forwards;
-    }
-
-    /* KARTU KEDUA: Masuk dari Kanan */
-    .card-2 {
-      animation: slideInRight 0.8s ease-out 1.2s forwards;
-    }
-
-    /* KARTU KETIGA: Masuk dari Bawah (Tempat Video) */
-    .card-3 {
-      animation: slideInUp 0.8s ease-out 2.2s forwards;
-      padding: 15px; /* Sedikit dirapatkan agar video pas */
+      max-width: 400px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
     }
 
     h1 {
       font-size: 1.8rem;
-      margin-bottom: 12px;
     }
 
     p {
       font-size: 1rem;
-      line-height: 1.6;
+      line-height: 1.5;
+    }
+
+    /* DESAIN FOTO KARTU 1 DAN KARTU 2 */
+    .card-img {
+      width: 100%;
+      max-height: 250px;
+      object-fit: cover;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* DESAIN VIDEO KARTU 3 */
+    .responsive-video {
+      width: 100%;
+      max-height: 300px;
+      border-radius: 15px;
+      object-fit: cover;
     }
 
     /* BALON MELAYANG */
     .balloon-container {
-      margin-top: 15px;
-      font-size: 2.2rem;
+      font-size: 2rem;
       display: flex;
-      justify-content: center;
       gap: 15px;
     }
 
@@ -85,55 +96,6 @@
     .balloon:nth-child(2) { animation-delay: 0.3s; }
     .balloon:nth-child(3) { animation-delay: 0.6s; }
 
-    /* UKURAN MEDIA & VIDEO AGAR RAPI DAN MELENGKUNG */
-    .responsive-video {
-      width: 100%;
-      max-height: 350px;
-      border-radius: 15px;
-      margin-top: 10px;
-      display: block;
-      object-fit: cover;
-    }
-
-    /* --- KEYFRAMES ANIMASI MASUK --- */
-    
-    /* Masuk dari Kiri */
-    @keyframes slideInLeft {
-      0% {
-        opacity: 0;
-        transform: translateX(-120%);
-      }
-      100% {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    /* Masuk dari Kanan */
-    @keyframes slideInRight {
-      0% {
-        opacity: 0;
-        transform: translateX(120%);
-      }
-      100% {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    /* Masuk dari Bawah */
-    @keyframes slideInUp {
-      0% {
-        opacity: 0;
-        transform: translateY(50px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Membal Balon */
     @keyframes bounce {
       0% { transform: translateY(0); }
       100% { transform: translateY(-12px); }
@@ -143,31 +105,42 @@
 <body>
 
   <div class="container">
-    <!-- Kartu 1: Muncul Pertama dari Kiri -->
-    <div class="card-1">
-      <h1>🎉 Happy Birthday! 🎂</h1>
-      <p>Met ultah @alizalsabela, Semoga harimu selalu always dan semua yu hep drim is tercapai!</p>
-    </div>
 
-    <!-- Kartu 2: Muncul Kedua dari Kanan -->
-    <div class="card-2">
-      <p>Sekali kali gunakan AI dengan baik dan benar, bersama AI jayakan indonesia, SELAMAT ULANG TAHUN INDONESIA YG KE-81</p>
-      
-      <div class="balloon-container">
-        <span class="balloon">🎈</span>
-        <span class="balloon">🎈</span>
-        <span class="balloon">🎈</span>
+    <!-- HALAMAN 1 (KARTU 1 + FOTO) -->
+    <section class="card">
+      <div class="card-content">
+        <h1>🎉 Happy Birthday! 🎂</h1>
+        <!-- Ganti foto1.jpg dengan nama file foto kamu -->
+        <img src="foto1.jpg" alt="Foto 1" class="card-img">
+        <p>Met ultah @alizalsabela, Semoga harimu selalu always dan semua yu hep drim is tercapai!</p>
       </div>
-    </div>
+    </section>
 
-    <!-- Kartu 3: Video Curut (Muncul Ketiga dari Bawah) -->
-    <div class="card-3">
-      <p>🎁 Gift For You 🎁</p>
-      <video controls autoplay muted loop class="responsive-video">
-        <source src="curut.mp4" type="video/mp4">
-        Browser kamu tidak mendukung video.
-      </video>
-    </div>
+    <!-- HALAMAN 2 (KARTU 2 + FOTO) -->
+    <section class="card">
+      <div class="card-content">
+        <!-- Ganti foto2.jpg dengan nama file foto kamu -->
+        <img src="foto2.jpg" alt="Foto 2" class="card-img">
+        <p>Sekali kali gunakan AI dengan baik dan benar, bersama AI jayakan indonesia, SELAMAT ULANG TAHUN INDONESIA YG KE-81</p>
+        <div class="balloon-container">
+          <span class="balloon">🎈</span>
+          <span class="balloon">🎈</span>
+          <span class="balloon">🎈</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- HALAMAN 3 (KARTU 3 + VIDEO) -->
+    <section class="card">
+      <div class="card-content">
+        <p>🎁 Gift For You 🎁</p>
+        <video controls autoplay muted loop class="responsive-video">
+          <source src="curut.mp4" type="video/mp4">
+          Browser kamu tidak mendukung video.
+        </video>
+      </div>
+    </section>
+
   </div>
 
 </body>
